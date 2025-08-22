@@ -1,0 +1,15 @@
+flask>=2.0.0
+transformers>=4.30.0
+torch>=2.0.0
+google-generativeai>=0.3.0
+sentencepiece
+protobuf>=3.20.0
+nltk>=3.8.1
+python-dotenv
+datasets>=2.12.0
+evaluate>=0.4.0
+numpy>=1.23.5
+newspaper3k
+newsapi-python
+translate
+googletrans==4.0.0-rc1

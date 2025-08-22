@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Text Analyzer | Summarization & Translation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-brain"></i> Smart Text Analyzer</h1>
+            <p class="subtitle">Advanced Summarization with Pegasus + Gemini</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section card">
+                <div class="toolbar">
+                    <button id="sampleBtn" title="Load Sample Text"><i class="fas fa-lightbulb"></i></button>
+                    <button id="clearBtn" title="Clear Text"><i class="fas fa-trash"></i></button>
+                    <div class="char-count" id="charCount">0 characters</div>
+                </div>
+                <textarea id="inputText" placeholder="Enter your text here or paste an article..."></textarea>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="language"><i class="fas fa-language"></i> Translate To:</label>
+                        <select id="language">
+                            <option value="none">No Translation</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                            <option value="it">Italian</option>
+                            <option value="pt">Portuguese</option>
+                            <option value="ru">Russian</option>
+                            <option value="zh">Chinese</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ar">Arabic</option>
+                            <option value="hi">Hindi</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="summaryLength"><i class="fas fa-ruler"></i> Summary Length:</label>
+                        <select id="summaryLength">
+                            <option value="short">Short (1-2 sentences)</option>
+                            <option value="medium" selected>Medium (3-5 sentences)</option>
+                            <option value="long">Long (5+ sentences)</option>
+                        </select>
+                    </div>
+                    
+                    <button id="summarizeBtn" class="primary-btn">
+                        <i class="fas fa-magic"></i> Generate Smart Summary
+                    </button>
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <div class="output-tabs">
+                    <button class="tab-btn active" data-tab="summary">
+                        <i class="fas fa-newspaper"></i> Summary
+                    </button>
+                    <button class="tab-btn" data-tab="reasoning">
+                        <i class="fas fa-lightbulb"></i> Thought Process
+                    </button>
+                    <button class="tab-btn" data-tab="translation">
+                        <i class="fas fa-globe"></i> Translation
+                    </button>
+                    <button class="tab-btn" data-tab="analysis">
+                        <i class="fas fa-chart-pie"></i> Analysis
+                    </button>
+                </div>
+                
+                <div id="summary" class="tab-content active">
+                    <div class="output-placeholder">
+                        <i class="fas fa-robot"></i>
+                        <p>Your generated summary will appear here...</p>
+                    </div>
+                    <div class="output-text" id="summaryOutput"></div>
+                </div>
+                
+                <div id="reasoning" class="tab-content">
+                    <div class="output-placeholder">
+                        <i class="fas fa-cogs"></i>
+                        <p>The model's reasoning process will be shown here...</p>
+                    </div>
+                    <div class="output-text" id="reasoningOutput"></div>
+                </div>
+                
+                <div id="translation" class="tab-content">
+                    <div class="output-placeholder">
+                        <i class="fas fa-language"></i>
+                        <p>Translated version will appear here if requested...</p>
+                    </div>
+                    <div class="output-text" id="translationOutput"></div>
+                </div>
+                
+                <div id="analysis" class="tab-content">
+                    <div class="output-placeholder">
+                        <i class="fas fa-chart-bar"></i>
+                        <p>Text analysis metrics will be displayed here...</p>
+                    </div>
+                    <div class="analysis-container" id="analysisOutput">
+                        <div class="metric">
+                            <div class="metric-value" id="wordCount">0</div>
+                            <div class="metric-label">Words</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="sentenceCount">0</div>
+                            <div class="metric-label">Sentences</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="readabilityScore">0</div>
+                            <div class="metric-label">Readability</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="keyTopics">0</div>
+                            <div class="metric-label">Key Topics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="loading" id="loadingIndicator">
+            <div class="spinner-container">
+                <div class="spinner"></div>
+                <div class="spinner-inner"></div>
+            </div>
+            <p class="loading-text">Analyzing text...</p>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by Pegasus & Gemini | Smart Text Analyzer</p>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
